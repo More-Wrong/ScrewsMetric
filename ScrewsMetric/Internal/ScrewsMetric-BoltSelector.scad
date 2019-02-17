@@ -1,5 +1,5 @@
 //Copyright 2017 Robert Witts
-//This library is licensed under the LGPL 2.1 See http://creativecommons.org/licenses/LGPL/2.1/
+//This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
 include<ScrewsMetric-core-BoltSelector.scad>;
 
 function isBoltInScrewsMetric(boltType, size) = M_isBoltInScrewsMetric(boltType, size);
