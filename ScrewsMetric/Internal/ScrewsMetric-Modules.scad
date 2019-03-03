@@ -81,6 +81,6 @@ module WingNutLocked(size, ERR=0, hollow = false, VertERR=0){
    M_WingNutLocked(size, ERR, hollow, VertERR);
 }
 module WingNutRotatable(size, ERR=0, hollow = false, VertERR=0){
-   module M_WingNutRotatable(size, ERR, hollow, VertERR);
+   M_WingNutRotatable(size, ERR, hollow, VertERR);
 }
 echo("ScrewsMetric basic modules: 'AllenBolt' 'AllenBoltHole' 'HexHeadBolt' 'HexHeadBoltHole' 'HexHeadBoltHoleAllowingSpin' 'HexHeadFlangeBolt' 'HexHeadFlangeBoltHole' 'ThinSquareNut' 'SquareNut' 'StuddingConnector' 'FullNut' 'NylockNut' 'DomeNut' 'Rod' 'ThinSquareNutHole' 'SquareNutHole' 'StuddingConnectorHole' 'FullNutHole' 'NylockNutHole' 'DomeNutHole' 'AllenButtonBolt' 'AllenButtonBoltHole' 'AllenCountersunkBolt' 'AllenCountersunkBoltHole' 'WingNutLocked' 'WingNutRotatable' 'WingNutLockedHole' \n");
