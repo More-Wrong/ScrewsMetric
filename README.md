@@ -402,7 +402,9 @@ hollow: boolean, whether to render part itself rather than create the hole for i
  - `getWasherDiam(washerType, size)`
  - `getWasherT(washerType, size)`
  - `isValueInWasherDatabase(nutType, size)`
+ - `isNutInScrewsSystem(nutType, size)`
  - `getNutH(nutType, size)`
+ - `getNutSideH(nutType, size)`  This is designed to behave well for insetting things like Nylocks and dome nuts.
  - `getNutPeakD(nutType, size)`
  - `getNutFlatD(nutType, size)`
 
