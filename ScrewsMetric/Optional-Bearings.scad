@@ -156,7 +156,7 @@ bearingDimensionArray = [
 ["6204_bearing", 6204_bearingBore, 6204_bearingOuterDiam, 6204_bearingThickness],
 ["6205_bearing", 6205_bearingBore, 6205_bearingOuterDiam, 6205_bearingThickness]];
 
-function BearingDimention(Type, Dimension) = bearingDimensionArray[Type][Dimension]==undef?ScrewsMetric_bearing_type_or_dimension_does_not_exist___Try_another_type():bearingDimensionArray[Type][Dimension]/Units;
+function BearingDimention(Type, Dimension) = bearingDimensionArray[Type][Dimension]==undef?ScrewsMetric_bearing_type_or_dimension_does_not_exist___Try_another_type():bearingDimensionArray[Type][Dimension]/Units==undef?bearingDimensionArray[Type][Dimension]:bearingDimensionArray[Type][Dimension]/Units;
 
 function ScrewsMetric_bearing_type_or_dimension_does_not_exist___Try_another_type() = SG_proceedOnError?undef:ScrewsMetric_bearing_type_or_dimension_does_not_exist___Try_another_type();
 

@@ -1,8 +1,5 @@
 //Copyright 2017 Robert Witts
 //This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
-mm = 1;
-inches = 25.4;
-Units = mm;
 
 SG_proceedOnError = false;
 
@@ -217,9 +214,9 @@ M14_studdingConnectorNutL = undef;
 M20_studdingConnectorNutL = undef;
 M24_studdingConnectorNutL = undef;
 
-M2_squareNutFlatD = undef;
-M2_5_squareNutFlatD = undef;
-M3_squareNutFlatD = undef;
+M2_squareNutFlatD = 4;
+M2_5_squareNutFlatD = 5;
+M3_squareNutFlatD = 5.5;
 M3_5_squareNutFlatD = undef;
 M4_squareNutFlatD = 7;
 M5_squareNutFlatD = 8;
@@ -247,9 +244,9 @@ M16_squareNutPeakD = sqrt(2)*M16_squareNutFlatD;
 M20_squareNutPeakD = sqrt(2)*M20_squareNutFlatD;
 M24_squareNutPeakD = sqrt(2)*M24_squareNutFlatD;
 
-M2_thinSquareNutH = undef;
-M2_5_thinSquareNutH = undef;
-M3_thinSquareNutH = undef;
+M2_thinSquareNutH = 1.2;
+M2_5_thinSquareNutH = 1.6;
+M3_thinSquareNutH = 1.8;
 M3_5_thinSquareNutH = undef;
 M4_thinSquareNutH = 2.2;
 M5_thinSquareNutH = 2.7;
@@ -603,8 +600,7 @@ M = [
 
 
 
-
-function M(a, b) = M[b][a] == undef ? ScrewsMetric_value_does_not_exist___Try_another_size_of_bolt() : M[b][a]/Units;
+function M(a, b) = M[b][a] == undef ? ScrewsMetric_value_does_not_exist___Try_another_size_of_bolt() : M[b][a]/Units==undef?M[b][a]:M[b][a]/Units;
 
 function isValueInScrewsMetric(a, b) = M[b][a] != undef;
 

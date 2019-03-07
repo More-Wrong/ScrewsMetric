@@ -219,7 +219,7 @@ railDimensionArray = [
 linearRailHForm = 1;
 linearRailCForm = 2;
 
-function railDimensions(a, b) = railDimensionArray[b][a] == undef ? RailSystem_value_does_not_exist___Try_another_size_of_rail() : railDimensionArray[b][a]/Units;
+function railDimensions(a, b) = railDimensionArray[b][a] == undef ? RailSystem_value_does_not_exist___Try_another_size_of_rail() : railDimensionArray[b][a]/Units==undef?railDimensionArray[b][a]:railDimensionArray[b][a]/Units;
 
 function RailSystem_value_does_not_exist___Try_another_size_of_rail() = SG_proceedOnError?undef:RailSystem_value_does_not_exist___Try_another_size_of_rail();
 

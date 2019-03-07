@@ -116,7 +116,7 @@ stepperStats = [["Name", "Nema08", "Nema11", "Nema14", "Nema17", "Nema23", "Nema
 
 
 
-function stepperStats(a, b) = stepperStats[b][a] == undef ? Stepper_value_does_not_exist___Try_another_size_of_bolt() : stepperStats[b][a]/Units;
+function stepperStats(a, b) = stepperStats[b][a] == undef ? Stepper_value_does_not_exist___Try_another_size_of_bolt() : stepperStats[b][a]/Units==undef?stepperStats[b][a]:stepperStats[b][a]/Units;
 
 function Stepper_value_does_not_exist___Try_another_size_of_bolt() = SG_proceedOnError?undef:Stepper_value_does_not_exist___Try_another_size_of_bolt();
 

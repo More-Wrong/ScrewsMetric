@@ -10,7 +10,7 @@ squareNut = 5;
 wingNut = 6;
 wingNutAllowTurn = 7;
 
-function M_isNutInScrewsMetric(nutType, size) = nutType == fullNut? isValueInScrewsMetric(size, fullNutH):
+function isNutInScrewsMetric(nutType, size) = nutType == fullNut? isValueInScrewsMetric(size, fullNutH):
 nutType == nylocNut? isValueInScrewsMetric(size, nylocNutH):
 nutType == domeNut? isValueInScrewsMetric(size, domeNutTotalH):
 nutType == thinSquareNut? isValueInScrewsMetric(size, thinSquareNutH):

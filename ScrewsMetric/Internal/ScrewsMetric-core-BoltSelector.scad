@@ -9,7 +9,7 @@ hexFlangeBolt = 4;
 hexHeadBoltAllowSpin = 5;
 
 
-function M_isBoltInScrewsMetric(boltType, size) = boltType == allenBolt ? isValueInScrewsMetric(size, allenBoltHeadD) :
+function isBoltInScrewsMetric(boltType, size) = boltType == allenBolt ? isValueInScrewsMetric(size, allenBoltHeadD) :
 boltType == allenButtonBolt ? isValueInScrewsMetric(size, allenButtonBoltHeadD):
 boltType == allenCountersunkBolt ? isValueInScrewsMetric(size, allenCountersunkBoltHeadD) :
 boltType == hexHeadBolt ? isValueInScrewsMetric(size, hexHeadBoltHeadH) :

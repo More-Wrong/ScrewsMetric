@@ -2,7 +2,7 @@
 //This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
 include<ScrewsMetric-core-BoltSelector.scad>;
 
-function isBoltInScrewsMetric(boltType, size) = M_isBoltInScrewsMetric(boltType, size);
+function isBoltInScrewsSystem(boltType, size) = isBoltInScrewsMetric(boltType, size);
 function getHeadDiameter(boltType, size) = M_getHeadDiameter(boltType, size);
 function getHeadHeight(boltType, size) = M_getHeadHeight(boltType, size);
 

@@ -160,13 +160,13 @@ module M_AllenButtonBolt(size, length, ERR=0,hollow = false){
    if(hollow){
       difference(){
          intersection(){
-            cylinder(d = M(size, allenButtonBoltHeadD)+ERR*2, h = M(size, allenBoltHeadH));
-            translate([0, 0, M(size, allenBoltHeadH)-r*0.8])sphere(r = r*0.93);
+            cylinder(d = M(size, allenButtonBoltHeadD)+ERR*2, h = M(size, allenButtonBoltHeadH));
+            translate([0, 0, M(size, allenButtonBoltHeadH)-r*0.8])sphere(r = r*0.93);
          }
-         translate([0, 0, M(size, allenBoltHeadH)/3])cylinder(d = M(size, allenButtonBoltKeySize)*2/sqrt(3), h = M(size, allenBoltHeadH)*2/3+0.001, $fn = 6);
+         translate([0, 0, M(size, allenBoltHeadH)/8])cylinder(d = M(size, allenButtonBoltKeySize)*2/sqrt(3), h = M(size, allenButtonBoltHeadH)*7/8+0.001, $fn = 6);
       }
    }else{
-      cylinder(d = M(size, allenButtonBoltHeadD)+ERR*2, h = M(size, allenBoltHeadH));
+      cylinder(d = M(size, allenButtonBoltHeadD)+ERR*2, h = M(size, allenButtonBoltHeadH));
    }
    translate([0, 0, -length])cylinder(d = M(size, boltD)+ERR*2, h = length+0.001);
    if(!hollow&&GHOST){

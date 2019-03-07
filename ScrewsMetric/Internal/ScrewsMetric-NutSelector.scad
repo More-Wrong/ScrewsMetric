@@ -1,7 +1,7 @@
 //Copyright 2017 Robert Witts
 //This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
 include<ScrewsMetric-core-NutSelector.scad>;
-function isNutInScrewsMetric(nutType, size) = M_isNutInScrewsMetric(nutType, size);
+function isNutInScrewsSystem(nutType, size) = isNutInScrewsMetric(nutType, size);
 function getNutH(nutType, size) = M_getNutH(nutType, size);
 function getNutSideH(nutType, size) = M_getNutSideH(nutType, size);
 function getNutPeakD(nutType, size) = M_getNutPeakD(nutType, size);

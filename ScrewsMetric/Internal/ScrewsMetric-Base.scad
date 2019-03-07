@@ -2,6 +2,10 @@
 //This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
 include<ScrewsMetric-core.scad>;
 
+mm = 1;
+inches = 25.4;
+Units = mm;
+
 function isValueInScrewsDatabase(a, b) = isValueInScrewsMetric(a, b);
 
 function getRodD(a) = M_getRodD(a);

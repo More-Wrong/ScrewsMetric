@@ -395,13 +395,13 @@ hollow: boolean, whether to render part itself rather than create the hole for i
  - `M(size, value_required)` The basic indexing function, used to retrieve values from the database.
  - `getRodD(size)` A higher level way of saying `M(size, boltD)` implemented to allow better compatability with ScrewsUniversal
  - `isValueInScrewsDatabase(a, b)`
- - `isBoltInScrewsMetric(boltType, size)`
+ - `isBoltInScrewsSystem(boltType, size)`
  - `getHeadDiameter(boltType, size)`
  - `getHeadHeight(boltType, size)`
- - `isWasherInScrewsMetric(washerType, size)`
+ - `isWasherInScrewsSystem(washerType, size)`
  - `getWasherDiam(washerType, size)`
  - `getWasherT(washerType, size)`
- - `isNutInScrewsMetric(nutType, size)`
+ - `isValueInWasherDatabase(nutType, size)`
  - `getNutH(nutType, size)`
  - `getNutPeakD(nutType, size)`
  - `getNutFlatD(nutType, size)`
