@@ -210,7 +210,7 @@ M24_washerFormG_OuterD = 72;
 //["\1", \1_washerFormA_B\2, \1_washerFormA_B\2, \1_washerFormC_D\2, \1_washerFormC_D\2, \1_washerFormE\2, \1_washerFormF\2, \1_washerFormG\2]
 //["\1", \1_washerFormA\2, \1_washerFormB\2, \1_washerFormC\2, \1_washerFormD\2, \1_washerFormE\2, \1_washerFormF\2, \1_washerFormG\2]
 
-M_washerDimensions = [[["Washer", "washerFormA", "washerFormB", "washerFormC", "washerFormD", "washerFormE", "washerFormF", "washerFormG"], 
+M_WasherDimensions = [[["Washer", "washerFormA", "washerFormB", "washerFormC", "washerFormD", "washerFormE", "washerFormF", "washerFormG"], 
 ["M2", "M2 washerFormA", "M2 washerFormB", "M2 washerFormC", "M2 washerFormD", "M2 washerFormE", "M2 washerFormF", "M2 washerFormG"], 
 ["M3", "M3 washerFormA", "M3 washerFormB", "M3 washerFormC", "M3 washerFormD", "M3 washerFormE", "M3 washerFormF", "M3 washerFormG"], 
 ["M4", "M4 washerFormA", "M4 washerFormB", "M4 washerFormC", "M4 washerFormD", "M4 washerFormE", "M4 washerFormF", "M4 washerFormG"], 
