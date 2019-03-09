@@ -46,8 +46,8 @@ module StuddingConnector(size, ERR=0,hollow = false, VertERR=0){
 module FullNut(size, ERR=0,hollow = false, VertERR=0){
    M_FullNut(size, ERR,hollow, VertERR);
 }
-module NylockNut(size, ERR=0,hollow = false, VertERR=0){
-   M_NylockNut(size, ERR,hollow, VertERR);
+module NylocNut(size, ERR=0,hollow = false, VertERR=0){
+   M_NylocNut(size, ERR,hollow, VertERR);
 }
 module DomeNut(size, ERR=0,hollow = false, VertERR=0){
    M_DomeNut(size, ERR,hollow, VertERR);
