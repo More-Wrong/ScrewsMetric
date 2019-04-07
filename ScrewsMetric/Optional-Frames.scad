@@ -740,7 +740,7 @@ module frames_inverseCurveAngle(baseType, plateW, plateH, baseHoleSep, baseT, pl
                }
             }
             translate([-strutT-cornerD-0.001, baseHoleSep+cornerD, plateH+baseT])rotate([0, 90, 0])resize([plateH*2, baseHoleSep*2+cornerD*2-plateT*2, strutT+cornerD+0.002])cylinder(d = plateH+baseT, h = strutT);
-            if(speed<2)translate([-strutT-cornerD-0.001, -0.001, plateH+baseT])rotate([0, 90, 90])resize([plateH*2, cornerD*2, baseHoleSep+cornerD])cylinder(d = plateH+baseT, h = strutT);
+            if(strutOutside)translate([-strutT-cornerD-0.001, -0.001, plateH+baseT])rotate([0, 90, 90])resize([plateH*2, cornerD*2, baseHoleSep+cornerD])cylinder(d = plateH+baseT, h = strutT);
          }
          difference(){
             hull(){
@@ -807,10 +807,10 @@ module frames_bridgeBaseAngle(baseType, plateW, plateH, baseHoleSep, baseT, plat
          minimalBridge(strutT, h1 = plateH+baseT, h2 = baseT, d = cornerD, l1 = [plateW+cornerD/2, cornerD/2], l2 = [plateW+cornerD/2, baseHoleSep+cornerD/2], speed = speed);
          minimalBridge(strutT/2, h = baseT, d = cornerD, l1 = [-cornerD/2, baseHoleSep+cornerD/2], l2 = [plateW+cornerD/2, baseHoleSep+cornerD/2]);
       }
-      translate([-cornerD*3/2, cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH);
-      translate([plateW+cornerD*3/2, cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH);
-      translate([-cornerD/2, baseHoleSep+cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH);
-      translate([plateW+cornerD/2, baseHoleSep+cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH);
+      translate([-cornerD*3/2, cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH, silent = true);
+      translate([plateW+cornerD*3/2, cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH, silent = true);
+      translate([-cornerD/2, baseHoleSep+cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH, silent = true);
+      translate([plateW+cornerD/2, baseHoleSep+cornerD/2, baseT+0.001])BoltInHoleFromNormal(boltType, boltSize, baseT+0.002, plateH, silent = true);
    }
 }
 module frames_pyramidBaseAngle(baseType, plateW, plateH, baseHoleSep, baseT, plateT, boltType, boltSize, cornerD, strutT){

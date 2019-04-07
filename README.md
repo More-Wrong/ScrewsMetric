@@ -143,6 +143,12 @@ The functions `getWasherT(form, size)` and `getWasherOuterD(form, size)` provide
 The ScrewsMetric-Demo.scad file is mainly intended to allow you to mess around, 
 see the capabilities of a parameterised system and get to know what the variables do.
 
+
+All the valid sizes:
+`M2` `M2_5` `M3` `M3_5` `M4` `M5` `M6` `M8` `M10` `M12` `M14` `M16` `M20` `M24`
+(2_5 means 2.5, but openscad does not support this as a variable name for obvious reasons)
+
+
 ## Bearings, Steppers, Rails and Frames
 
 These sections are not included in ScrewsMetric by default, as they are somewhat independent, while they use the system, they primarily use their own internal database.
@@ -166,6 +172,10 @@ It also supports ScrewsMetric sizes as an argument, e.g.
 
 To do this it searches for a bearing that will fit the rod size provided, it will notify you if the bearing might not fit correctly, due to being too large, as not all bearing sizes exist.
 If not given a series it will default to the 600 series.
+The bearing system supports `600`, `620`, `630` and `670` series for metric, and `KLNJ` and `LJ` bearings for imperial, in various sizes.
+Metric bearings come in 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 17, 20, 25 and 30mm internal diameters, 
+whereas the imperial come in 1/8", 3/16", 1/4", 3/8", 1/2", 5/8", 3/4", 7/8", and 1" sizes (although the LJ series only has 1/2", 5/8", 3/4", 7/8" and 1").
+
 
 ### Steppers
 

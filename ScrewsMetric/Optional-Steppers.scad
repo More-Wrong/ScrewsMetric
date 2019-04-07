@@ -150,11 +150,11 @@ module stepperBoltPositionTranslateMirroring(stepperSize){
 //dualShaft, if set to true renders the shaft going all the way thought the motor
 //This module is for projection only, so that you can make things look pretty, do not use it for anything else as values are somewhat arbitrary
 module stepper(stepperSize, stepperL = -1, shaftL = -1, orientation = -1, ERR = 0, dualShaft = false){
-      realBodyL = stepperL!=-1?stepperL:stepperStats(stepperSize,stepperWidth);
-      realShaftL = shaftL!=-1?shaftL:stepperStats(stepperSize,stepperWidth)/2;
+   realBodyL = stepperL!=-1?stepperL:stepperStats(stepperSize,stepperWidth);
+   realShaftL = shaftL!=-1?shaftL:stepperStats(stepperSize,stepperWidth)/2;
    translate([-ERR, -ERR, -realBodyL])cube([stepperStats(stepperSize, stepperWidth)+ERR*2, stepperStats(stepperSize, stepperWidth)+ERR*2, realBodyL]);
-         translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, 0])cylinder(d = stepperStats(stepperSize, stepperCircleD)+ERR*2, h = stepperStats(stepperSize, stepperCircleT)+ERR);
-         translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperCircleT)])cylinder(d = stepperStats(stepperSize, stepperShaftD)+ERR*2, h = realShaftL);
+   translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, 0])cylinder(d = stepperStats(stepperSize, stepperCircleD)+ERR*2, h = stepperStats(stepperSize, stepperCircleT)+ERR);
+   translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperCircleT)])cylinder(d = stepperStats(stepperSize, stepperShaftD)+ERR*2, h = realShaftL);
    %if(GHOST)union()if(stepperSize == Nema08 || stepperSize == Nema11){
       if(orientation!=-1)translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, -realBodyL])rotate([0, 0, 180-90*orientation])translate([stepperStats(stepperSize, stepperWidth)/2, -stepperStats(stepperSize,stepperWidth)/4, 0.5/Units]){
          cube([stepperStats(stepperSize, stepperCornerEffectLevel)/2, stepperStats(stepperSize,stepperWidth)/2, stepperStats(stepperSize, stepperPlateT)*1.5]);
@@ -316,4 +316,32 @@ module stepper(stepperSize, stepperL = -1, shaftL = -1, orientation = -1, ERR = 
          }
       }
    }
+}
+
+
+module stepperAdjustable(stepperSize, plateT, boltType, adjustmentDist, stepperL = -1, shaftL = -1, orientation = -1, ERR = 0, dualShaft = false){
+   realBodyL = stepperL!=-1?stepperL:stepperStats(stepperSize,stepperWidth);
+   realShaftL = shaftL!=-1?shaftL:stepperStats(stepperSize,stepperWidth)/2;
+      translate([-ERR, -ERR, -realBodyL])cube([stepperStats(stepperSize, stepperWidth)+ERR*2+adjustmentDist, stepperStats(stepperSize, stepperWidth)+ERR*2, realBodyL]);
+   translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, 0])hull(){
+      cylinder(d = stepperStats(stepperSize, stepperCircleD)+ERR*2, h = plateT+0.001);
+      translate([adjustmentDist, 0, 0])cylinder(d = stepperStats(stepperSize, stepperCircleD)+ERR*2, h = plateT+0.001);
+   }
+   translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperCircleT)])hull(){
+      cylinder(d = stepperStats(stepperSize, stepperShaftD)+ERR*2, h = realShaftL);
+      translate([adjustmentDist, 0, 0])cylinder(d = stepperStats(stepperSize, stepperShaftD)+ERR*2, h = realShaftL);
+   }
+   stepperBoltPositionTranslate(stepperSize){
+      translate([0, 0, plateT])BoltNormalWithSurface(boltType, stepperStats(stepperSize, stepperBoltSize), plateT, ERR);
+      translate([0, 0, plateT+0.001])hull(){
+         GHOST = false;
+         BoltNormalWithSurface(boltType, stepperStats(stepperSize, stepperBoltSize), 0, ERR);
+         translate([adjustmentDist, 0, 0])BoltNormalWithSurface(boltType, stepperStats(stepperSize, stepperBoltSize), 0, ERR);
+      }
+      hull(){
+         cylinder(d = getRodD(stepperStats(stepperSize, stepperBoltSize)), h = plateT+0.002);
+         translate([adjustmentDist, 0, 0])cylinder(d = getRodD(stepperStats(stepperSize, stepperBoltSize)), h = plateT+0.002);
+      }
+   }
+   stepper(stepperSize, stepperL, shaftL, orientation, ERR, dualShaft);
 }

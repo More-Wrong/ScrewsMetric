@@ -63,8 +63,8 @@ module FullNutHole(size, distFromEdge, ERR=0, VertERR=0){
 module DomeNutHole(size, distFromEdge, ERR=0, VertERR=0){
    M_DomeNutHole(size, distFromEdge, ERR, VertERR);
 }
-module NylocNutHole(size, distFromEdge, ERR=0, VertERR=0){
-   M_NylocNutHole(size, distFromEdge, ERR, VertERR);
+module NylockNutHole(size, distFromEdge, ERR=0, VertERR=0){
+   M_NylockNutHole(size, distFromEdge, ERR, VertERR);
 }
 module ThinSquareNutHole(size, distFromEdge, ERR=0, VertERR=0){
    M_ThinSquareNutHole(size, distFromEdge, ERR, VertERR);
