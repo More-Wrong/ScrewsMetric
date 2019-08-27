@@ -196,6 +196,16 @@ This will return an array of the locations of the bolts relative to the top corn
        translate(i)Rod(M2, 5);
     }
 
+To minimise this code, use `stepperBoltPositionTranslate()`, or `stepperBoltPositionTranslateMirroring()`, e.g.
+
+    stepperBoltPositionTranslate(Nema11){
+       translate(i)Rod(M2, 5);
+    }
+
+    stepperBoltPositionTranslateMirroring(Nema11){
+       translate(i)Rod(M2, 5);
+    }
+
 The stepper system can cut holes for steppers, and render them, using `stepper()` 
 this will try to give a reasonable value for the length of the stepper, 
 but as steppers can be almost any length, it can be passed as a parameter. 
