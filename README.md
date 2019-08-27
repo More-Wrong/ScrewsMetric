@@ -158,8 +158,12 @@ This is because the things they model do not fit within normal metric sizes, so 
 
 The Bearing system supports multiple forms of bearings, e.g. 624 vs 604
 
-To use it, either ask for a specific bearing, using `BearingType()` and giving it the specific bearing, e.g. 
+To get the pure information, `BearingDimention(Type, Dimension)` will give the information, with Dimension being `bearingBore`, `bearingOuterDiam` or `bearingThickness`, e.g.
 
+    echo(BearingDimention(605_bearing, bearingBore));
+
+However, the system is more designed to create the bearings itself.
+To do so, either ask for a specific bearing, using `BearingType()` and giving it the specific bearing, e.g. 
     BearingType(605_bearing);
 
 Or ask it for a bearing for a particular size, specifying the series, e.g. 
