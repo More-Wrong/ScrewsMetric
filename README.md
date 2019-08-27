@@ -386,7 +386,7 @@ Since the distance between the bolts is not consistent across the styles, there 
 
 Example:
 
-    frames_baseAngle(frames_hullBase, plateW = 20, plateH = 20, baseHoleSep = 20, baseT = 5, plateT = 5, boltSize = allenBolt, boltSize = M3, cornerD = 8, strutT = 5, center = false, speed = 2);
+    frames_baseAngle(frames_hullBase, plateW = 20, plateH = 20, baseHoleSep = 20, baseT = 5, plateT = 5, boltType = allenBolt, boltSize = M3, cornerD = 8, strutT = 5, center = false, speed = 2);
 
 ## Functions and Modules provided
 Standard meanings of variable names:
