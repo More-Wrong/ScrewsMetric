@@ -305,9 +305,15 @@ There are different ways of controlling the location of the two cylinders (only 
 
 ##### Side numbers ($fn)
 There are two values of $fn used. this is due to the different requirements of different parts of the shape. 
-The cylinders used to create the curve need comparatively high side count, 
-as they can be very large, but the shaping used at `speed = 0` needs comparitivly low $fn or the performance becomes unbearable, 
+The system does not actually use large cylinders, but polyhedra emulating cylinders, 
+this means $fn sets the number of actual sides, so need not be too large, 
+but the shaping used at `speed = 0` still needs comparatively low $fn or the performance becomes unbearable, 
 this second value is what `hRoundfn` is for.
+
+##### Half
+The `half` argument usually is unused, but can be used to make it so that one side is flat, and the other curved.
+It can only take the values `undef`, `0` or `1`. `undef` giving the default both sides curving, 
+and `0` and `1` giving one or the other side flat.
 
 ##### Example
 
