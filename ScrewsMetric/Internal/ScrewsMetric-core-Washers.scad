@@ -261,6 +261,7 @@ function M_WasherDimensions(a, b, c) = M_WasherDimensions[c][a][b]!=undef?M_Wash
 function ScrewsMetric_washer_dimension_not_found___Try_another_type() = SG_proceedOnError?undef:ScrewsMetric_washer_dimension_not_found___Try_another_type();
 
 function isValueInScrewsMetricWasher(a, b, c) = M_WasherDimensions[c][a][b]!=undef;
+function isWasherInScrewsMetricWasher(a, b) = M_WasherDimensions[1][a][b]!=undef&&M_WasherDimensions[2][a][b]!=undef;
 
 function M_getWasherT(a, b) = M_WasherDimensions(a, b, washerT);
 function M_getWasherOuterD(a, b) = M_WasherDimensions(a, b, washerOuterD);
@@ -268,7 +269,7 @@ function M_getWasherOuterD(a, b) = M_WasherDimensions(a, b, washerOuterD);
 module M_Washer(form, size, ERR = 0, hollow = false, VertERR = 0){
    difference(){
       cylinder(d = M_WasherDimensions(size, form, washerOuterD)+ERR*2, h = M_WasherDimensions(size, form, washerT)+VertERR);
-      if(hollow)translate([0, 0, -0.001])cylinder(d = M_getRodD(size), h = M_WasherDimensions(size, form, washerT)+VertERR+0.002);
+      if(hollow)translate([0, 0, -0.002])cylinder(d = M_getRodD(size), h = M_WasherDimensions(size, form, washerT)+VertERR+0.004);
    }
    if(!hollow&&GHOST){
       %M_Washer(form, size, 0, true);

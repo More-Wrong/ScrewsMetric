@@ -6,23 +6,23 @@ function isBoltInScrewsSystem(boltType, size) = isBoltInScrewsMetric(boltType, s
 function getHeadDiameter(boltType, size) = M_getHeadDiameter(boltType, size);
 function getHeadHeight(boltType, size) = M_getHeadHeight(boltType, size);
 
-module BoltOnSurface(boltType, size, length, ERR=0, hollow = false, silent = false){
-    M_BoltOnSurface(boltType, size, length, ERR, hollow, silent);
+module BoltOnSurface(boltType, size, length, ERR=0, silent = false){
+    M_BoltOnSurface(boltType, size, length, ERR, silent);
 }
-module BoltFlushWithSurface(boltType, size, length, ERR=0, hollow = false, override = false, silent = false){
-   M_BoltFlushWithSurface(boltType, size, length, ERR, hollow, override, silent);
+module BoltFlushWithSurface(boltType, size, length, ERR=0, override = false, silent = false){
+   M_BoltFlushWithSurface(boltType, size, length, ERR, override, silent);
 }
-module BoltNormalWithSurface(boltType, size, length, ERR=0, hollow = false, silent = false){
-   M_BoltNormalWithSurface(boltType, size, length, ERR, hollow, silent);
+module BoltNormalWithSurface(boltType, size, length, ERR=0, silent = false){
+   M_BoltNormalWithSurface(boltType, size, length, ERR, silent);
 }
-module BoltInHoleFromTop(boltType, size, length, holeDepth, ERR=0, hollow = false, silent = false){
-   M_BoltInHoleFromTop(boltType, size, length, holeDepth, ERR, hollow, silent);
+module BoltInHoleFromTop(boltType, size, length, holeDepth, ERR=0, silent = false){
+   M_BoltInHoleFromTop(boltType, size, length, holeDepth, ERR, silent);
 }
-module BoltInHoleFromBottom(boltType, size, length, holeDepth, ERR=0, hollow = false, silent = false){
-   M_BoltInHoleFromBottom(boltType, size, length, holeDepth, ERR, hollow, silent);
+module BoltInHoleFromBottom(boltType, size, length, holeDepth, ERR=0, silent = false){
+   M_BoltInHoleFromBottom(boltType, size, length, holeDepth, ERR, silent);
 }
-module BoltInHoleFromNormal(boltType, size, length, holeDepth, ERR=0, hollow = false, silent = false){
-   M_BoltInHoleFromNormal(boltType, size, length, holeDepth, ERR, hollow, silent);
+module BoltInHoleFromNormal(boltType, size, length, holeDepth, ERR=0, silent = false){
+   M_BoltInHoleFromNormal(boltType, size, length, holeDepth, ERR, silent);
 }
 echo("ScrewsMetric Bolt types: \'allenBolt\' \'allenButtonBolt\' \'allenCountersunkBolt\' \'hexHeadBolt\' \'hexFlangeBolt\' \'hexHeadBoltAllowSpin\'\n");
 echo("ScrewsMetric bolt system utility functions: \'getHeadDiameter\' \'getHeadHeight\'");

@@ -5,6 +5,7 @@ include<ScrewsMetric-core-Washers.scad>;
 function WasherDimensions(a, b, c) = M_WasherDimensions(a, b, c);
 
 function isValueInWasherDatabase(a, b, c) = isValueInScrewsMetricWasher(a, b, c);
+function isWasherInWasherDatabase(a, b) = isWasherInScrewsMetricWasher(a, b);
 
 function getWasherT(a, b) = M_getWasherT(a, b);
 function getWasherOuterD(a, b) = M_getWasherOuterD(a, b);

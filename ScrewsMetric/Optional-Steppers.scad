@@ -138,10 +138,10 @@ module stepperBoltPositionTranslate(stepperSize){
 module stepperBoltPositionTranslateMirroring(stepperSize){
    sep = stepperStats(stepperSize, stepperBoltSeperation)/2;
    translate([stepperStats(stepperSize, stepperWidth)/2, stepperStats(stepperSize, stepperWidth)/2]){
-      translate([sep/2, sep/2])children();
-      mirror([1, 0])translate([sep/2, sep/2])children();
-      mirror([0, 1])translate([sep/2, sep/2])children();
-      mirror([1, 0])mirror([0, 1])translate([sep/2, sep/2])children();
+      translate([sep, sep])children();
+      mirror([1, 0])translate([sep, sep])children();
+      mirror([0, 1])translate([sep, sep])children();
+      mirror([1, 0])mirror([0, 1])translate([sep, sep])children();
    }
 }
 //stepperL is the body length of the motor, if left at -1 defaults to the width

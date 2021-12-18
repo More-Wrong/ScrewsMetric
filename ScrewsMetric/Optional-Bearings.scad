@@ -1,6 +1,7 @@
 //Copyright 2017 Robert Witts
 //This library is licensed under the LGPL 3.0 See http://creativecommons.org/licenses/LGPL/3.0/
 include<ScrewsMetric-sizeDeclaration.scad>;
+
 SG_proceedOnError = false;
 bearingBore = 1;
 bearingOuterDiam = 2;
@@ -17,6 +18,8 @@ KLNJ_seriesBearings = 81;
 LJ_seriesBearings = 101;
 
 firstFitSeries = -1;
+
+allBearingSeries = [firstFitSeries, 600_seriesBearings, 620_seriesBearings, 630_seriesBearings, 670_seriesBearings, KLNJ_seriesBearings, LJ_seriesBearings];
 
 BEARING_SYSTEM_BEARING_SET_SEPARATION = 20;
 
@@ -96,6 +99,8 @@ LJ_5_8_bearing = 102;
 LJ_3_4_bearing = 103;
 LJ_7_8_bearing = 104;
 LJ_1_bearing = 105;
+LJ_9_8_bearing = 106;
+LJ_5_4_bearing = 107;
 
 
 
@@ -482,12 +487,14 @@ bearingDimensionArray = [
 ["LJ_5_8_bearing", LJ_5_8_bearingBore, LJ_5_8_bearingOuterDiam, LJ_5_8_bearingThickness],
 ["LJ_3_4_bearing", LJ_3_4_bearingBore, LJ_3_4_bearingOuterDiam, LJ_3_4_bearingThickness],
 ["LJ_7_8_bearing", LJ_7_8_bearingBore, LJ_7_8_bearingOuterDiam, LJ_7_8_bearingThickness],
-["LJ_1_bearing", LJ_1_bearingBore, LJ_1_bearingOuterDiam, LJ_1_bearingThickness]];
+["LJ_1_bearing", LJ_1_bearingBore, LJ_1_bearingOuterDiam, LJ_1_bearingThickness],
+["LJ_9_8_bearing", LJ_9_8_bearingBore, LJ_9_8_bearingOuterDiam, LJ_9_8_bearingThickness],
+["LJ_5_4_bearing", LJ_5_4_bearingBore, LJ_5_4_bearingOuterDiam, LJ_5_4_bearingThickness]];
 
 //^\[\"([^"]+)\"]
 //["\1", \1Bore, \1OuterDiam, \1Thickness]
 
-function BearingDimention(Type, Dimension) = bearingDimensionArray[Type][Dimension]==undef?ScrewsBearingSystem_bearing_type_or_dimension_does_not_exist___Try_another_type():bearingDimensionArray[Type][Dimension]/Units==undef?bearingDimensionArray[Type][Dimension]:bearingDimensionArray[Type][Dimension]/Units;
+function BearingDimention(Type, Dimension) = bearingDimensionArray[Type][Dimension]==undef?ScrewsBearingSystem_bearing_type_or_dimension_does_not_exist___Try_another_type():Type==0||Dimension==0||bearingDimensionArray[Type][Dimension]/Units==undef?bearingDimensionArray[Type][Dimension]:bearingDimensionArray[Type][Dimension]/Units;
 
 function ScrewsBearingSystem_bearing_type_or_dimension_does_not_exist___Try_another_type() = SG_proceedOnError?undef:ScrewsBearingSystem_bearing_type_or_dimension_does_not_exist___Try_another_type();
 
@@ -529,7 +536,7 @@ module BearingFromSize(size, series = firstFitSeries, ERR=0, hollow = false){
 module ScrewsInternalBearingItterator(d, ERR, hollow, location, end, bestLoc = -1, bestD = 100000000){
    if(location==end){
       if(bestLoc==-1){
-         echo("No bearing found for given diameter");
+         echo("WARNING: No bearing found for given diameter");
       } else{
          echo(str("Bearing finding operation resulted in a ", BearingDimention(bestLoc, 0)));
          if(BearingDimention(bestLoc, bearingBore)!=d){
@@ -541,7 +548,7 @@ module ScrewsInternalBearingItterator(d, ERR, hollow, location, end, bestLoc = -
       echo(str("Bearing finding operation resulted in a ", BearingDimention(location, 0)));
       BearingType(location, ERR, hollow);
    } else {
-      if(bearingDimensionArray[location][bearingBore]>d&&bearingDimensionArray[location][bearingBore]-d<bestD-d){
+      if(location!=0&&bearingDimensionArray[location][bearingBore]!=undef && bearingDimensionArray[location][bearingBore]>d&&bearingDimensionArray[location][bearingBore]-d<bestD-d){
          ScrewsInternalBearingItterator(d, ERR, hollow, location+1, end, location, bearingDimensionArray[location][bearingBore]);
       }else {
          ScrewsInternalBearingItterator(d, ERR, hollow, location+1, end, bestLoc, bestD);

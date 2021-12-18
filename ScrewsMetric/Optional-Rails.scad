@@ -293,8 +293,8 @@ module rail(railType, length, cutBlockHole = true, ERR = 0, position = -1, form 
    %if(GHOST){
       if(position!=-1){
          intersection(){
-            translate([position, -railDimensions(railType, linearRailBlockWidth)/2, railDimensions(railType, linearRailAssemblyTotalHeight)])ghostRailBlock(railType, form, slowMode);
-            cube(0, 0, 0);
+            translate([position, -railDimensions(railType, linearRailBlockWidth)/2, railDimensions(railType, linearRailAssemblyTotalHeight)])railBlock(railType, form, slowMode = slowMode);
+            cube(0);
          }
       }
       difference(){

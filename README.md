@@ -273,12 +273,12 @@ The `frames_curveToSlope()` is an internal module, creating a quarter of a stret
 The `minimalBridge()` module creates a bridge between two cylinders, with a curve to minimise plastic use, which exactly matches the two cylinders at either end.
 
 Its full parameter list is very long:
-`minimalBridge(minW, h= undef, h1 = undef, h2 = undef, d = undef, r = undef, d1 = undef, d2 = undef, r1 = undef, r2 = undef, sep = undef, l = undef, l1 = undef, l2 = undef, speed = 1, $fn = 500, hRoundfn = 100);`
+`minimalBridge(minW, h = undef, h1 = undef, h2 = undef, d = undef, r = undef, d1 = undef, d2 = undef, r1 = undef, r2 = undef, sep = undef, l = undef, l1 = undef, l2 = undef, minH = undef, flatL = undef, flatProportion = undef, curveR = undef, curveR1 = undef, curveR2 = undef, half = undef, bias = undef, speed = 0, $fn = 500, hRoundfn = 100);`
 
 These parameters are designed to mimic that of `cylinder()` in that only one of several different ways to specify each feature need be used, 
-it is recommended to use `h = 5` rather than using the ordering of the parameters.
+it is recommended to use e.g. `h = 5` rather than using the ordering of the parameters.
 
-The `minW` parameter specifies the narrowest width of the bridge. If this is smaller than either diameter, the module will simply `hull()` the two cylinders.
+The `minW` parameter specifies the narrowest width of the bridge. If this is larger than either diameter, the module will simply `hull()` the two cylinders.
 These are the different kinds of parameters:
 
 ##### Diameters
@@ -296,6 +296,18 @@ which specifies how performance intensive an operation should be used. Each valu
  - 2 simply makes one taller than other, no joining performed, is the default.
  - 1 hulls the two cylinders, while preserving bridge shape, looks alright, depending on circumstance, can look weird.
  - 0 creates a rotational extrude of an inverted curve, very pretty, very performance intensive.
+
+`minH` is slightly seperate, and only works in the `speed = 0` or `speed = 2` modes. 
+It works similarly to the `minW`, setting a central height, lower than the two outer cylinders.
+This is even more performance intensive in `speed = 0` mode, as it requires two inverted curves.
+The setting works regardles of the mode in which the heights of the other two cylinders were set, although will do nothing if larger than either.
+
+To give more detailed settings for the curves doing the height blending, the following settings can be used (but only do anything when `minH` is also used):
+
+ - `flatL` gives a length for a flat area between the 2 ends
+ - `flatProportion` the same as above, but relative to the total length
+ - `curveR` Gives the radius of the curve to be used at both ends, if this exceeds `sep/2`, it won't look great
+ - `curveR1`, `curveR2` Give the radiuses seperately. These can be used individually
 
 ##### Separation/Location
 There are different ways of controlling the location of the two cylinders (only in 2D space) 
@@ -315,6 +327,13 @@ The `half` argument usually is unused, but can be used to make it so that one si
 It can only take the values `undef`, `0` or `1`. `undef` giving the default both sides curving, 
 and `0` and `1` giving one or the other side flat.
 
+The `bias` argument is similar, but more sophisticated, it allows the allocation of the slack to be controlled.
+The default is effectively `0`, although not using it is more efficient. 
+`bias = -1` is the same as `half = 0`, and `bias = 1` is the same as `half = 1`.
+`bias` can take any value, but values outside `-7` to `7` are unreliable, and values outside `-1` to `1` can fail in some cases.
+
+These values do not always garuentee that the minimum width is observed - the bar will be at least that wide, but may sometimes fail to get as narrow as required, particularly when the 2 diameters differ substantially.
+ 
 ##### Example
 
     minimalBridge(8, h1 = 5, h2 = 10, d1 = 20, d2 = 10, l1 = [20, 0], l2 = [0, 20], speed = 0, $fn = 500, hRoundfn = 100);
@@ -432,6 +451,7 @@ hollow: boolean, whether to render part itself rather than create the hole for i
  - `getWasherDiam(washerType, size)`
  - `getWasherT(washerType, size)`
  - `isValueInWasherDatabase(nutType, size)`
+ - `isWasherInWasherDatabase(nutType, size)`
  - `isNutInScrewsSystem(nutType, size)`
  - `getNutH(nutType, size)`
  - `getNutSideH(nutType, size)`  This is designed to behave well for insetting things like Nylocks and dome nuts.
@@ -480,6 +500,16 @@ hollow: boolean, whether to render part itself rather than create the hole for i
  - `DomeNut(size, ERR, hollow, VertERR);`
  - `WingNutLocked(size, ERR, hollow, VertERR);`
  - `WingNutRotatable(size, ERR, hollow, VertERR);`
+ 
+#### Nut verticle holes:
+
+ - `FullNutVertHole(size, depth, ERR);`
+ - `DomeNutVertHole(size, depth, ERR);`
+ - `NylockNutVertHole(size, depth, ERR);`
+ - `ThinSquareNutVertHole(size, depth, ERR);`
+ - `SquareNutVertHole(size, depth, ERR);`
+ - `StuddingConnectorVertHole(size, depth, ERR);`
+ - `WingNutLockedVertHole(size, depth, ERR);`
 
 #### Nut holes:
 
@@ -515,9 +545,16 @@ hollow: boolean, whether to render part itself rather than create the hole for i
   Measures wherever is most applicable on that type of bolt, making a hole above for the bolt to enter.
 
 #### Washers and Nuts:
-
+The Nut system is similar to the Bolt system, with the different placement options.
  - `Washer(form, size, ERR, hollow, VertERR);`
  - `Nut(nutType, size, ERR, hollow, VertERR);`
+ - `NutNormalWithSurface(nutType, size, ERR, hollow, VertERR);`
+ - `NutFlushWithSurface(nutType, size, ERR, hollow, VertERR);`
+ - `NutSemiFlushWithSurface(nutType, size, ERR, hollow, VertERR);` This will embed a nylock up to the end of the hex section (these values might not be fully accurate).
+ - `NutVertHole(nutType, size, depth, ERR);`
+ - `NutVertHoleFromNormal(nutType, size, depth, ERR);`
+ - `NutVertHoleFromTop(nutType, size, depth, ERR);`
+ - `NutVertHoleFromSemiTop(nutType, size, depth, ERR);`
  - `NutHole(nutType, size, depth, ERR, VertERR);`
 
 
