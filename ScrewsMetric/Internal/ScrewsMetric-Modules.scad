@@ -4,32 +4,32 @@ include<ScrewsMetric-core-modules.scad>;
 module AllenBolt(size, length, ERR=0,hollow = false){
    M_AllenBolt(size, length, ERR,hollow);
 }
-module AllenBoltHole(size, length, holeDepth, ERR=0,hollow = false){
-   M_AllenBoltHole(size, length, holeDepth, ERR,hollow);
+module AllenBoltHole(size, length, holeDepth, ERR=0){
+   M_AllenBoltHole(size, length, holeDepth, ERR);
 }
 module AllenButtonBolt(size, length, ERR=0,hollow = false){
    M_AllenButtonBolt(size, length, ERR,hollow);
 }
-module AllenButtonBoltHole(size, length, holeDepth, ERR=0,hollow = false){
-   M_AllenButtonBoltHole(size, length, holeDepth, ERR,hollow);
+module AllenButtonBoltHole(size, length, holeDepth, ERR=0){
+   M_AllenButtonBoltHole(size, length, holeDepth, ERR);
 }
 module AllenCountersunkBolt(size, length, ERR=0,hollow = false){
    M_AllenCountersunkBolt(size, length, ERR,hollow);
 }
-module AllenCountersunkBoltHole(size, length, holeDepth, ERR=0,hollow = false){
-   M_AllenCountersunkBoltHole(size, length, holeDepth, ERR,hollow);
+module AllenCountersunkBoltHole(size, length, holeDepth, ERR=0){
+   M_AllenCountersunkBoltHole(size, length, holeDepth, ERR);
 }
 module HexHeadBolt(size, length, ERR=0,hollow = false){
    M_HexHeadBolt(size, length, ERR,hollow);
 }
-module HexHeadBoltHole(size, length, holeDepth, ERR=0,hollow = false){
-   M_HexHeadBoltHole(size, length, holeDepth, ERR,hollow);
+module HexHeadBoltHole(size, length, holeDepth, ERR=0){
+   M_HexHeadBoltHole(size, length, holeDepth, ERR);
 }
-module HexHeadBoltHoleAllowingSpin(size, length, holeDepth, ERR=0,hollow = false){
-   M_HexHeadBoltHoleAllowingSpin(size, length, holeDepth, ERR,hollow);
+module HexHeadBoltHoleAllowingSpin(size, length, holeDepth, ERR=0){
+   M_HexHeadBoltHoleAllowingSpin(size, length, holeDepth, ERR);
 }
-module HexHeadFlangeBoltHole(size, length, holeDepth, ERR=0,hollow = false){
-   M_HexHeadFlangeBoltHole(size, length, holeDepth, ERR,hollow);
+module HexHeadFlangeBoltHole(size, length, holeDepth, ERR=0){
+   M_HexHeadFlangeBoltHole(size, length, holeDepth, ERR);
 }
 module HexHeadFlangeBolt(size, length, ERR=0,hollow = false){
    M_HexHeadFlangeBolt(size, length, ERR,hollow);
