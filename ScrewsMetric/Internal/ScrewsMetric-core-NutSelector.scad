@@ -84,6 +84,186 @@ module M_Nut(nutType, size, ERR = 0, hollow = false, VertERR=0){
       M_FullNut(size, length, ERR, hollow, VertERR);
    }
 }
+module M_NutNormalWithSurface(nutType, size, ERR = 0, hollow = false, VertERR=0){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNut(size, ERR, hollow, VertERR);
+   } else if(nutType == nylocNut){
+      M_NylocNut(size, ERR, hollow, VertERR);
+   } else if(nutType == domeNut){
+      M_DomeNut(size, ERR, hollow, VertERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)])M_ThinSquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == studdingConnector){
+      M_StuddingConnector(size, ERR, hollow, VertERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == wingNut){
+      M_WingNutLocked(size, ERR, hollow, VertERR);
+   } else if(nutType == wingNutAllowTurn){
+      M_WingNutRotatable(size, ERR, hollow, VertERR);
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      translate([0, 0, -M(size, fullNutH)])M_FullNut(size, length, ERR, hollow, VertERR);
+   }
+}
+module M_NutFlushWithSurface(nutType, size, ERR = 0, hollow = false, VertERR=0, override = false){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNut(size, ERR, hollow, VertERR);
+   } else if(nutType == nylocNut){
+      translate([0, 0, -M(size, nylocNutH)])M_NylocNut(size, ERR, hollow, VertERR);
+   } else if(nutType == domeNut){
+      translate([0, 0, -M(size, domeNutTotalH)])M_DomeNut(size, ERR, hollow, VertERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)])M_ThinSquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == studdingConnector){
+      translate([0, 0, -M(size, studdingConnectorNutL)])M_StuddingConnector(size, ERR, hollow, VertERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == wingNut){
+      if(override){
+         translate([0, 0, -M(size, wingNutWingH)])M_WingNutLocked(size, ERR, hollow, VertERR);
+      }else{
+         echo("WARNING: Wing Nuts do not inset well, as you they are kind of wierd, so will be left on surface, if you want to inset anyway, please use \'override = true\'");
+         M_WingNutLocked(size, ERR, hollow, VertERR);
+      }
+   } else if(nutType == wingNutAllowTurn){
+      if(override){
+         translate([0, 0, -M(size, wingNutWingH)])M_WingNutRotatable(size, ERR, hollow, VertERR);
+      }else{
+         echo("WARNING: Wing Nuts do not inset well, as you they are kind of wierd, so will be left on surface, if you want to inset anyway, please use \'override = true\'");
+         M_WingNutRotatable(size, ERR, hollow, VertERR);
+      }
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      translate([0, 0, -M(size, fullNutH)])M_FullNut(size, length, ERR, hollow, VertERR);
+   }
+}
+module M_NutSemiFlushWithSurface(nutType, size, ERR = 0, hollow = false, VertERR=0, override = false){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNut(size, ERR, hollow, VertERR);
+   } else if(nutType == nylocNut){
+      translate([0, 0, -M(size, fullNutH)])M_NylocNut(size, ERR, hollow, VertERR);
+   } else if(nutType == domeNut){
+      translate([0, 0, -M(size, domeNutHexH)])M_DomeNut(size, ERR, hollow, VertERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)])M_ThinSquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == studdingConnector){
+      translate([0, 0, -M(size, studdingConnectorNutL)])M_StuddingConnector(size, ERR, hollow, VertERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNut(size, ERR, hollow, VertERR);
+   } else if(nutType == wingNut){
+      if(override){
+         translate([0, 0, -M(size, wingNutBaseH)])M_WingNutLocked(size, ERR, hollow, VertERR);
+      }else{
+         echo("WARNING: Wing Nuts do not inset well, as you they are kind of wierd, so will be left on surface, if you want to inset anyway, please use \'override = true\'");
+         M_WingNutLocked(size, ERR, hollow, VertERR);
+      }
+   } else if(nutType == wingNutAllowTurn){
+      if(override){
+         translate([0, 0, -M(size, wingNutBaseH)])M_WingNutRotatable(size, ERR, hollow, VertERR);
+      }else{
+         echo("WARNING: Wing Nuts do not inset well, as you they are kind of wierd, so will be left on surface, if you want to inset anyway, please use \'override = true\'");
+         M_WingNutRotatable(size, ERR, hollow, VertERR);
+      }
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      M_FullNut(size, length, ERR, hollow, VertERR);
+   }
+}
+
+
+
+
+module M_NutVertHole(nutType, size, depth, ERR = 0){
+   if(nutType == fullNut){
+      M_FullNutVertHole(size, depth, ERR);
+   } else if(nutType == nylocNut){
+      M_NylocNutVertHole(size, depth, ERR);
+   } else if(nutType == domeNut){
+      M_DomeNutVertHole(size, depth, ERR);
+   } else if(nutType == thinSquareNut){
+      M_ThinSquareNutVertHole(size, depth, ERR);
+   } else if(nutType == studdingConnector){
+      M_StuddingConnectorVertHole(size, depth, ERR);
+   } else if(nutType == squareNut){
+      M_SquareNutVertHole(size, depth, ERR);
+   } else if(nutType == wingNut){
+      M_WingNutLockedVertHole(size, depth, ERR);
+   } else if(nutType == wingNutAllowTurn){
+      M_WingNutRotatableVertHole(size, depth, ERR);
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      M_FullNutVertHole(size, depth, ERR);
+   }
+}
+module M_NutVertHoleFromNormal(nutType, size, depth, ERR = 0){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   } else if(nutType == nylocNut){
+      M_NylocNutVertHole(size, depth, ERR);
+   } else if(nutType == domeNut){
+      M_DomeNutVertHole(size, depth, ERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)])M_ThinSquareNutVertHole(size, depth+M(size, thinSquareNutH), ERR);
+   } else if(nutType == studdingConnector){
+      M_StuddingConnectorVertHole(size, depth, ERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNutVertHole(size, depth+M(size, squareNutH), ERR);
+   } else if(nutType == wingNut){
+      M_WingNutLockedVertHole(size, depth, ERR);
+   } else if(nutType == wingNutAllowTurn){
+      M_WingNutRotatableVertHole(size, depth, ERR);
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   }
+}
+module M_NutVertHoleFromTop(nutType, size, depth, ERR = 0){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   } else if(nutType == nylocNut){
+      translate([0, 0, -M(size, nylocNutH)])M_NylocNutVertHole(size, depth+M(size, nylocNutH), ERR);
+   } else if(nutType == domeNut){
+      translate([0, 0, -M(size, domeNutTotalH)])M_DomeNutVertHole(size, depth+M(size, domeNutTotalH), ERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)])M_ThinSquareNutVertHole(size, depth+M(size, thinSquareNutH), ERR);
+   } else if(nutType == studdingConnector){
+      translate([0, 0, -M(size, studdingConnectorNutL)])M_StuddingConnectorVertHole(size, depth+M(size, studdingConnectorNutL), ERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNutVertHole(size, depth+M(size, squareNutH), ERR);
+   } else if(nutType == wingNut){
+      translate([0, 0, -M(size, wingNutWingH)])M_WingNutLockedVertHole(size, depth+M(size, wingNutWingH), ERR);
+   } else if(nutType == wingNutAllowTurn){
+      translate([0, 0, -M(size, wingNutWingH)])M_WingNutRotatableVertHole(size, depth+M(size, wingNutWingH), ERR);
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   }
+}
+module M_NutVertHoleFromSemiTop(nutType, size, depth, ERR = 0){
+   if(nutType == fullNut){
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   } else if(nutType == nylocNut){
+      translate([0, 0, -M(size, fullNutH)])M_NylocNutVertHole(size, depth+M(size, fullNutH), ERR);
+   } else if(nutType == domeNut){
+      translate([0, 0, -M(size, domeNutHexH)])M_DomeNutVertHole(size, depth+M(size, domeNutHexH), ERR);
+   } else if(nutType == thinSquareNut){
+      translate([0, 0, -M(size, thinSquareNutH)]) M_ThinSquareNutVertHole(size, depth+M(size, thinSquareNutH), ERR);
+   } else if(nutType == studdingConnector){
+      translate([0, 0, -M(size, studdingConnectorNutL)])M_StuddingConnectorVertHole(size,  depth+M(size, studdingConnectorNutL), ERR);
+   } else if(nutType == squareNut){
+      translate([0, 0, -M(size, squareNutH)])M_SquareNutVertHole(size, depth+M(size, squareNutH), ERR);
+   } else if(nutType == wingNut){
+      translate([0, 0, -M(size, wingNutBaseH)])M_WingNutLockedVertHole(size, depth+M(size, wingNutBaseH), ERR);
+   } else if(nutType == wingNutAllowTurn){
+      translate([0, 0, -M(size, wingNutBaseH)])M_WingNutRotatableVertHole(size, depth+M(size, wingNutBaseH), ERR);
+   } else {
+      echo("ERROR: Nut type not recognised, proceding with default nut");
+      translate([0, 0, -M(size, fullNutH)])M_FullNutVertHole(size, depth+M(size, fullNutH), ERR);
+   }
+}
+
+
 module M_NutHole(nutType, size, depth, ERR = 0, VertERR=0){
    if(nutType == fullNut){
       M_FullNutHole(size, depth, ERR, VertERR);
@@ -100,8 +280,8 @@ module M_NutHole(nutType, size, depth, ERR = 0, VertERR=0){
    } else if(nutType == wingNut){
       M_WingNutLockedHole(size, depth, ERR, VertERR);
    } else if(nutType == wingNutAllowTurn){
-      echo("WARNING: There is no way you would want a wing nut to be rotatable when immbedded in something, so the system will make it fixed, to remove this error, use wingNut as opposed to wingNutAllowTurn");
-      M_WingNutRotatable(size, depth, ERR, VertERR);
+      echo("WARNING: There is no way you would want a wing nut to be rotatable when imbedded in something, so the system will make it fixed in place, to remove this error, use wingNut as opposed to wingNutAllowTurn");
+      M_WingNutLockedHole(size, depth, ERR, VertERR);
    } else {
       echo("ERROR: Nut type not recognised, proceding with default nut");
       M_FullNut(size, length, ERR, VertERR);
