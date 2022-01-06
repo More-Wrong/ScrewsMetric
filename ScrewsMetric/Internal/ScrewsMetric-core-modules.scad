@@ -50,7 +50,7 @@ module M_AllenButtonBoltHole(size, length, holeDepth, ERR=0){
 module M_AllenCountersunkBolt(size, length, ERR=0,hollow = false){
    difference(){
       union(){
-         translate([0, 0, -M(size, allenCountersunkBoltHeadH)])cylinder(r1 = M(size, boltD)/2, r2 = M(size, allenCountersunkBoltHeadD)/2, h = M(size, allenCountersunkBoltHeadH)+0.001);
+         translate([0, 0, -M(size, allenCountersunkBoltHeadH)])cylinder(r1 = M(size, boltD)/2+ERR, r2 = M(size, allenCountersunkBoltHeadD)/2+ERR, h = M(size, allenCountersunkBoltHeadH)+0.001);
          translate([0, 0, -length-0.001])cylinder(d = M(size, boltD)+ERR*2, h = length+0.002-M(size, allenCountersunkBoltHeadH));
       }
       if(hollow)translate([0, 0, -M(size, allenCountersunkBoltHeadH)*2/3])cylinder(d = M(size, allenCountersunkBoltKeySize)*2/sqrt(3), h = M(size, allenCountersunkBoltHeadH)*2/3+0.002, $fn = 6);
@@ -60,8 +60,8 @@ module M_AllenCountersunkBolt(size, length, ERR=0,hollow = false){
    }
 }
 module M_AllenCountersunkBoltHole(size, length, holeDepth, ERR=0){
-   translate([0, 0, -0.001])cylinder(d = M(size, allenCountersunkBoltHeadD), h = holeDepth+0.002);
-   translate([0, 0, -M(size, allenCountersunkBoltHeadH)])cylinder(r1 = M(size, boltD)/2, r2 = M(size, allenCountersunkBoltHeadD)/2, h = M(size, allenCountersunkBoltHeadH));
+   translate([0, 0, -0.001])cylinder(d = M(size, allenCountersunkBoltHeadD)+ERR*2, h = holeDepth+0.002);
+   translate([0, 0, -M(size, allenCountersunkBoltHeadH)])cylinder(r1 = M(size, boltD)/2+ERR, r2 = M(size, allenCountersunkBoltHeadD)/2+ERR, h = M(size, allenCountersunkBoltHeadH));
    translate([0, 0, -length-0.001])cylinder(d = M(size, boltD)+ERR*2, h = length+0.002-M(size, allenCountersunkBoltHeadH));
    if(GHOST){
       %M_AllenCountersunkBolt(size, length, 0, true);
@@ -210,7 +210,7 @@ module M_WingNutRotatable(size, ERR=0, hollow = false, VertERR=0){
 module M_Rod(size, length, ERR=0, hollow = false){
    translate([0, 0, -0.001])cylinder(d = M(size, boltD)+ERR*2, h = length+0.002);
    if(!hollow&&GHOST){
-      %cylinder(d = M(size, boltD)+ERR*2, h = length);
+      %cylinder(d = M(size, boltD), h = length);
    }
 }
 module M_FullNutVertHole(size, depth, ERR=0){
